@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<%- include('includes/head_carrinho') %>
+
+<body>
+
+    <%- include('includes/navbar') %>
+
+    <% const carrinhoString = carrinho.join("+"); %>
+    <% let i = 0; %>
+    <% let subtotal = 0; %>
+
+    <div class="Cart-Container">
+        <div class="Header">
+            <h3 class="Heading">Carrinho de Compras</h3>
+            <h5 class="Action">Remover Produtos</h5>
+        </div>
+
+        <% produtos.forEach(produto => { %>
+            <div class="Cart-Items">
+                <div class="image-box">
+                    <img src="<%= produto.imagem %>" />
+                </div>
+                <div class="about">
+                    <h1 class="title"><%= produto.titulo %></h1>
+                </div>
+                <div class="prices">
+                    <div class="amount">R$ <%= produto.preco %></div>
+                    <div class="remove"><u>Remover Produto</u></div>
+                </div>
+            </div>
+            <% i++; %>
+            <% subtotal += parseFloat(produto.preco); %>
+        <% }) %>
+      <hr> 
+      <div class="checkout">
+      <div class="total">
+          <div>
+              <div class="Subtotal">Sub-Total</div>
+              <div class="items"><%= i %> items</div>
+          </div>
+          <div class="total-amount">R$ <%= subtotal %></div>
+      </div>
+      <a href="/users/<%= carrinhoString %>/comprar" class="button">Comprar</a></div>
+    </div>
+
+    
+</body>
+
+</html>

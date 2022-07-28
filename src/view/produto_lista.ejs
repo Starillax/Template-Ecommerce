@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<%- include('includes/head_lista_produtos') %>
+
+<body>
+    
+    <%- include('includes/navbar') %>
+    
+    <div class="wrapper">
+        <div class="cards_wrap">
+            <% produtos.forEach(produto => { %>
+                <div class="card_item">
+                    <div class="card_inner">
+                        <img src="<%= produto.imagem %>"></img>
+                        <div class="role_name"><a href="/produtos/<%= produto.id %>"><%= produto.titulo %></a></div>
+                        <div class="film">R$ <%= produto.preco %></div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <% if (user !== undefined) { %>
+        <% if (user.tipo == 'admin') { %>
+            <div class="buttons">
+                <a class="button" href="/produtos/insert">Inserir Novo Produto</a>
+            </div>
+        <% } %>
+    <% } %>
+
+</body>
+ 
+</html>

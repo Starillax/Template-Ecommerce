@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<%- include('includes/head_forms') %>
+
+<body>
+
+    <%- include('includes/navbar') %>
+    
+    <% if (form == 'cadastro') { %>
+
+        <div class="form-style-10">
+            <h1>Cadastre-se!</h1>
+            <form action="/users/cadastrar" method="post">
+                <div class="section"><span>1</span>Dados para a Conta</div>
+                <div class="inner-wrap">
+                    <label>Nome de Usuário <input type="text" name="username" required /></label>
+                    <label>E-mail <input type="email" name="email" required /></label>
+                    <label>Senha <input type="password" name="senha" required /></label>
+                </div>
+            
+                <div class="section"><span>2</span>Dados Pessoais</div>
+                <div class="inner-wrap">
+                    <label>Nome Completo <input type="text" name="nomecompleto" required /></label>
+                    <label>DDD + Número de Celular <input type="text" name="numcel" required /></label>
+                    <label>CPF <input type="text" name="cpf" required /></label>
+                    <label>Endereço <textarea name="endereco" required></textarea></label>
+                    
+                </div>
+
+                <div class="button-section">
+                    <input type="submit" value="Realizar Cadastro!" />
+                </div>
+            </form>
+        </div>
+        
+    <% } else if (form == 'edicao') { %>
+
+        <div class="form-style-10">
+            <h1>Edite sua Conta</h1>
+            <form action="/users/editar" method="post">
+                <div class="section"><span>1</span>Dados para a Conta</div>
+                <div class="inner-wrap">
+                    <label>Nome de Usuário <input type="text" name="username" value="<%= data.username %>" required /></label>
+                </div>
+            
+                <div class="section"><span>2</span>Dados Pessoais</div>
+                <div class="inner-wrap">
+                    <label>Nome Completo <input type="text" name="nomecompleto" value="<%= data.nomecompleto %>" required /></label>
+                    <label>DDD + Número de Celular <input type="text" name="numcel" value="<%= data.numcel %>" required /></label>
+                    <label>CPF <input type="text" name="cpf" required value="<%= data.cpf %>" /></label>
+                    <label>Endereço <textarea name="endereco" required><%= data.endereco %></textarea></label>
+                </div>
+            
+                <div class="button-section">
+                    <input type="submit" value="Realizar Alterações" />
+                </div>
+            </form>
+        </div>
+
+    <% } %>
+
+</body>
+</html>

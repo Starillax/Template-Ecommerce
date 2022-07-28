@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<%- include('includes/head_carrinho') %>
+
+<body>
+
+    <%- include('includes/navbar') %>
+
+    <% let i = 0; %>
+    <% let totalCompras = 0; %>
+
+    <div class="Cart-Container">
+        <div class="Header">
+            <h3 class="Heading">Carrinho de Compras</h3>
+        </div>
+
+        <% compras.forEach(compra => { %>
+            <div class="Cart-Items">
+                <div class="image-box">
+                    <img src="<%= compra.imagem %>" />
+                </div>
+                <div class="about">
+                    <h1 class="title"><%= compra.titulo %></h1>
+                </div>
+                <div class="prices">
+                    <div class="amount">R$ <%= compra.preco %></div>
+                </div>
+            </div>
+            <% i++; %>
+            <% totalCompras += parseFloat(compra.preco); %>
+        <% }) %>
+      <hr> 
+      <div class="checkout">
+      <div class="total">
+          <div>
+              <div class="Subtotal">Total de Compras</div>
+              <div class="items"><%= i %> itens</div>
+          </div>
+          <div class="total-amount">R$ <%= totalCompras %></div>
+      </div>
+    </div>
+
+</body>
+
+</html>

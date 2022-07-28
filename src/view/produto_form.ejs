@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<%- include('includes/head_forms') %>
+
+<body>
+
+    <%- include('includes/navbar') %>
+    
+    <% if (form == 'cadastro') { %>
+
+        <div class="form-style-10">
+            <h1>Cadastre um Novo Produto</h1>
+            <form action="/produtos/inserir" method="post">
+                <div class="section"><span>1</span>Informações do Produto</div>
+                <div class="inner-wrap">
+                    <label>Título <input type="text" name="titulo" required /></label>
+                    <label>Descrição <textarea name="descricao" required></textarea></label>
+                    <label>Preço (em reais) <input type="text" name="preco" required /></label>
+                    <label>Link para Imagem <input type="text" name="imagem" required /></label>
+                    <label>Produtor(a) ou Marca <input type="text" name="produtor" required /></label>
+                </div>
+            
+                <div class="section"><span>2</span>Categorias do Produto</div>
+                <div class="inner-wrap">
+                    <% for (i = 0; i < categorias.length; i++) { %>
+                        <label><%= categorias[i].nome %> <input type="checkbox" name="categorias[]" id="categoria-<%= categorias[i].id %>" value="<%= categorias[i].id %>" /></label>
+                    <% } %>
+                </div>
+
+                <div class="button-section">
+                    <input type="submit" value="Realizar Cadastro" />
+                </div>
+            </form>
+        </div>
+        
+    <% } else if (form == 'edicao') { %>
+
+        <% const arrayCheckedCategorias = checkedCategorias.map(({ id }) => ( id )); %>
+
+        <div class="form-style-10">
+            <h1>Edite o Produto</h1>
+            <form action="/produtos/inserir" method="post">
+                <div class="section"><span>1</span>Informações do Produto</div>
+                <div class="inner-wrap">
+                    <label>Título <input type="text" name="titulo" value="<%= produto.titulo %>" required /></label>
+                    <label>Descrição <textarea name="descricao" required><%= produto.descricao %></textarea></label>
+                    <label>Preço (em reais) <input type="text" name="preco" value="<%= produto.preco %>" required /></label>
+                    <label>Link para Imagem <input type="text" name="imagem" value="<%= produto.imagem %>" required /></label>
+                    <label>Produtor(a) ou Marca <input type="text" name="produtor" value="<%= produto.produtor %>" required /></label>
+                </div>
+            
+                <div class="section"><span>2</span>Categorias do Produto</div>
+                <div class="inner-wrap">
+                    <% for (i = 0; i < categorias.length; i++) { %>
+                        <% if (arrayCheckedCategorias.includes(categorias[i].id) == true) { %>
+                            <label><%= categorias[i].nome %> <input type="checkbox" name="categorias[]" id="categoria-<%= categorias[i].id %>" value="<%= categorias[i].id %>" checked /></label>
+                        <% } else { %>
+                            <label><%= categorias[i].nome %> <input type="checkbox" name="categorias[]" id="categoria-<%= categorias[i].id %>" value="<%= categorias[i].id %>" /></label> 
+                        <% } %>
+                    <% } %>
+                </div>
+
+                <div class="button-section">
+                    <input type="submit" value="Editar o Produto" />
+                </div>
+            </form>
+        </div>
+
+    <% } %>
+
+</body>
+</html>

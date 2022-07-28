@@ -1,0 +1,25 @@
+<nav class="nav">
+    <% if (user !== undefined) { %>
+        <% if (user.tipo == 'admin') { %>
+            <div class="nav__title">Boas vindas, <%= user.username %></div>
+            <ul class="nav__list">
+                <li class="nav__item"><a id="casa" href="/">Produtos</a></li>
+                <li class="nav__item"><a id="categorias" href="/categorias">Categorias</a></li>
+                <li class="nav__item"><a id="logout" href="/users/logout">Sair desta Conta</a></li>
+            </ul>
+        <% } else if (user.tipo == 'user') { %>
+            <div class="nav__title">Boas vindas, <%= user.username %></div>
+            <ul class="nav__list">
+                <li class="nav__item"><a id="casa" href="/">Produtos</a></li>
+                <li class="nav__item"><a id="perfil" href="/users/<%= user.email %>">Perfil de Usuário</a></li>
+                <li class="nav__item"><a id="logout" href="/users/logout">Sair desta Conta</a></li>
+            </ul>
+        <% } %>
+    <%} else { %>
+        <ul class="nav__list">
+            <li class="nav__item"><a id="casa" href="/">Produtos</a></li>
+            <li class="nav__item"><a id="cadastro" href="/users/cadastro">Cadastrar-se</a></li>
+            <li class="nav__item"><a id="login" href="/users/login">Entrar no sistema</a></li>
+        </ul>
+    <% } %>
+</nav>

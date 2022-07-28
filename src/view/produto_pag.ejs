@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<%- include('includes/head_pag_produto') %>
+
+<body>
+
+    <%- include('includes/navbar') %>
+
+    <% const arrayCategorias = categorias.map(({ id, nome }) => ( nome )); %>
+    <% const categoriasString = arrayCategorias.join(", ") %>
+
+    <main class="container">
+ 
+        <!-- Left Column / Headphones Image -->
+        <div class="left-column">
+          <img src="<%= produto.imagem %>">
+        </div>
+       
+       
+        <!-- Right Column -->
+        <div class="right-column">
+       
+          <!-- Product Description -->
+          <div class="product-description">
+            <!-- categorias -->
+            <span><%= categoriasString %></span>
+            <h1><%= produto.titulo %></h1>
+            <span>Produzido por <%= produto.produtor %></span>
+            <p><%= produto.descricao %></p>
+          </div>
+       
+          <!-- Product Pricing -->
+          <div class="product-price">
+            <span>R$ <%= produto.preco %></span>
+            <% if (user !== undefined) { %>
+              <% if (user.tipo == 'user') { %>
+                <a href="/users/<%= produto.id %>/addCarrinho" class="cart-btn">Adicionar ao Carrinho</a>
+              <% } else if (user.tipo == 'admin') { %>
+                <a href="/produtos/<%= produto.id %>/edit" class="cart-btn">Editar Produto</a>
+              <% } %>
+            <% } %>
+          </div>
+        </div>
+      </main>
+
+</body>
+
+</html>

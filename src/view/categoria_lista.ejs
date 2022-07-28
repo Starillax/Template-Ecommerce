@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<%- include('includes/head_tables') %>
+
+<body>
+    
+    <%- include('includes/navbar') %>
+
+      <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+          <% categorias.forEach(categoria => { %>
+            <tr>
+              <td><%= categoria.nome %></td>
+              <td><a href="/categorias/<%= categoria.id %>/delete"> Deletar Categoria</a></td>  
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+
+      <div class="buttons">
+        <a class="button" href="/categorias/insert">Inserir Nova Categoria</a>
+      </div>
+
+</body>
+ 
+</html>

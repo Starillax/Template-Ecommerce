@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<%- include('includes/head_forms') %>
+
+<body>
+
+    <%- include('includes/navbar') %>
+    
+    <div class="form-style-10">
+        <h1>Cadastro de Categoria</h1>
+        <form action="/categorias/inserir" method="post">
+            <div class="section"><span>1</span>Nome</div>
+            <div class="inner-wrap">
+                <label>Nome <input type="text" name="nome" required /></label>
+            </div>
+
+            <div class="button-section">
+                <input type="submit" value="Cadastrar Categoria" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>
